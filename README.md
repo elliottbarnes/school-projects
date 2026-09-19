@@ -1,6 +1,6 @@
 # School Projects
 
-A curated collection of original coursework code in C, Java, Python, SQL, and computer vision. This public snapshot keeps the useful implementation work while excluding grades, student identifiers, assignment prompts, instructor solutions, submission bundles, third-party papers, personal imagery, generated binaries, and restricted course frameworks.
+A curated collection of original coursework code demonstrating algorithms, networking, concurrency, computer vision, data structures, and database design in C, Java, Python, JavaScript, and SQL.
 
 ## Projects
 
@@ -23,4 +23,4 @@ Individual project READMEs identify collaborators where the source came from gro
 
 ## Repository history
 
-This is a clean public snapshot with new history. Complete academic histories remain in private archival repositories because those histories include material unsuitable for public redistribution.
+This is a clean public snapshot with new history. It includes reviewed original code and concise documentation while omitting course-provided or private academic material, generated artifacts, and dependencies that cannot be redistributed. Complete academic histories remain in private archival repositories.
