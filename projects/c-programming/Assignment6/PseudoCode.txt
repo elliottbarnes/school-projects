@@ -1,0 +1,61 @@
+Q2. a)
+
+Semaphore okCross = 1;
+
+void crossBridge()
+
+{
+	okCross.wait();
+	cross();
+	okCross.signal();
+}
+
+
+void cross()
+{
+	sleep(3);
+}
+
+
+Q2. b)
+
+
+watch bridge
+{
+	int numWaitingNorth = 0;
+	int numWaitingSouth = 0;
+	int onBridge = 0;
+	condition okCross;
+	int prev = 0;
+
+	void enterBridgeNorth()
+	{
+		numWaitingNorth++;
+		while (onBridge ||(prev == 0 && numWaitingSouth > 0))
+		okCross.wait();
+		onBridge=1;
+		numWaitingNorth--;
+		prev = 0;
+	}
+	void exitBridgeNorth()
+	{
+		onBridge = 0;
+		okCross.broadcast();
+	}
+	void enterBridgeSouth()
+	{
+		numWaitingSouth++;
+		while (onBridge ||(prev == 1 && numWaitingNorth > 0))
+		okCross.wait();
+		onBridge=1;
+		numWaitingSouth--;
+		prev = 1;
+	}
+
+	void exitBridgeSouth()
+	{
+		onBridge = 0;
+		okCross.broadcast();
+	}
+}
+
