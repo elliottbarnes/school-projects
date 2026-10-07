@@ -1,0 +1,13 @@
+{
+  "name": "school-projects",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "check": "node scripts/check-demo.mjs",
+    "serve": "python3 -m http.server 4177 --bind 127.0.0.1 --directory demo"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

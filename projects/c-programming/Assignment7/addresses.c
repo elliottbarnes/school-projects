@@ -1,60 +1,24 @@
-//
-//  main.c
-//  q7
-//
-//  Created by Elliott Barnes on 2020-04-03.
-//  Copyright © 2020 Elliott Barnes. All rights reserved.
-//
+// Address translation coursework by Elliott Barnes (2020).
+// Copyright © 2020 Elliott Barnes. All rights reserved.
+// 2026 completion: validate decimal 32-bit addresses before division/modulo.
+#include <errno.h>
+#include <inttypes.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-#include<stdio.h>
-#include<stdlib.h>
-
-int main(int argc, char **argv)
-{
-    // defining page size (4kb)
-    
-   const int PAGE_SIZE = 4096;
-
-   // variable to hold addr
-    
-   unsigned int addr_ref;
-
-   // variable holding page number of the given address
-    
-   unsigned int page_number;
-
-   // variable holding page offset of the given address
-    
-   unsigned int page_offset;
-
-   // error check, arguments must be greater or equal to 2
-    
-   if (argc < 2)
-   {
-       
-       printf("Atleast 2 arguments must be passed.\n");
-
-       return -1;
-       
-   }
-
-   // read val from userInput, convert string-int, store in addr variable
-    
-   addr_ref = atoi(argv[1]);
-
-   // compute page number
-    
-   page_number = addr_ref / PAGE_SIZE;
-
-  // compute page offset
-
-   page_offset = addr_ref % PAGE_SIZE;
-
-   // print addr, page number and page offset
-    
-   printf("The address %d contains:\n", addr_ref);
-   printf("Page Number = %d\n", page_number);
-   printf("Offset = %d\n", page_offset);
-
-   return 0;
+int main(int argc, char **argv) {
+    if (argc != 2 || !argv[1][0] || strspn(argv[1], "0123456789") != strlen(argv[1])) {
+        fprintf(stderr, "Usage: addresses <decimal address 0..4294967295>\n");
+        return 1;
+    }
+    errno = 0;
+    char *end;
+    uintmax_t address = strtoumax(argv[1], &end, 10);
+    if (errno || *end || address > UINT32_MAX) {
+        fprintf(stderr, "Address must be between 0 and 4294967295.\n");
+        return 1;
+    }
+    printf("The address %" PRIuMAX " contains:\nPage Number = %" PRIuMAX "\nOffset = %" PRIuMAX "\n", address, address / 4096, address % 4096);
+    return 0;
 }

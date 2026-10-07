@@ -2,6 +2,22 @@
 
 A curated collection of original coursework code demonstrating algorithms, networking, concurrency, computer vision, data structures, and database design in C, Java, Python, JavaScript, and SQL.
 
+**[Open the interactive Memory Lab](https://elliottbarnes.github.io/school-projects/)** — edit page references, compare FIFO/LRU/OPT, step through frame replacements, and translate a 32-bit virtual address.
+
+## Run the completed example
+
+Requires Node.js 24+, Python 3, and a C compiler (`cc`) for the native comparison tests. No package installation is needed.
+
+```sh
+node --test
+node scripts/check-demo.mjs
+python3 -m http.server 4177 --bind 127.0.0.1 --directory demo
+```
+
+Open **http://localhost:4177**. The browser lab accompanies C Assignments 7 and 8. Tests compile the C programs with warnings as errors and compare every trace row against the browser algorithms on 30 deterministic cases. Known fault totals and the FIFO anomaly provide independent examples. The updated C programs validate bounded inputs and correct the historical LRU victim-selection bug.
+
+This is a complete runnable slice of an academic archive, not a claim that all historical exercises are finished products. The remaining areas below retain their own prerequisites and limitations. The Pages workflow publishes only `demo/`, excluding reports, datasets, and native source artifacts.
+
 ## Projects
 
 | Project | Technologies | What is included |
